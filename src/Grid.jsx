@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class List extends Component {
+class Grid extends Component {
 	renderList() {
 		const items = this.props.items.map(item => {
 			return <li key={item.name}>{item.name}</li>
@@ -18,4 +18,4 @@ class List extends Component {
 	}
 }
 
-export default List; 
+export default Grid; 
