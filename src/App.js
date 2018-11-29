@@ -24,17 +24,34 @@ const rockets = [
 	{name: "New Glenn", org: "Blue Origin", capacity: 45000, img: ""}
 ];
 
+let filters = {};
+let sorter = (a, b) => a.name.localeCompare(b.name);
+
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			filtered_rockets: rockets
+			filtered_rockets: rockets,
 		};
 	}
+	
+	updateList = () => {
+		let newFiltered = rockets.sort(sorter);
+		for (let key in filters) {
+			newFiltered = newFiltered.filter(filters[key]);
+		}
+		this.setState({filtered_rockets: newFiltered});
+	}
 
-	onChanged = (list) => {
-		this.setState({filtered_rockets: list});
+	registerSorter = (newSorter) => {
+		sorter = newSorter;
+		this.updateList();
+	}
+
+	registerFilter = (name, filter) => {
+		filters[name] = filter;
+		this.updateList();
 	}
 
 	render() {
@@ -52,10 +69,12 @@ class App extends Component {
 			<div className="App">
 				<h1>American Rockets</h1>
 				<div className="row">
-					<Filter rockets={rockets} onChanged={this.onChanged} items={org_menu} title={"Filter by organization"}/>
-					<Filter rockets={rockets} onChanged={this.onChanged} items={capacity_menu} title={"Filter by payload capacity"}/>
-					<Filter rockets={rockets} onChanged={this.onChanged} />
-					<Sorter items={this.state.filtered_rockets} onChanged={this.onChanged} />
+					<Filter registerFilter={this.registerFilter} 
+						items={org_menu} title={"Filter by organization"} />
+					<Filter registerFilter={this.registerFilter} 
+						items={capacity_menu} title={"Filter by payload capacity"} />
+					<Sorter registerSorter={this.registerSorter} />
+					<Filter registerFilter={this.registerFilter} title={"Search"} />
 				</div>
 				<Grid items={this.state.filtered_rockets} />
 			</div>

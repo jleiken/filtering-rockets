@@ -6,23 +6,22 @@ class Filter extends Component {
 
 	// Sets display to false depending on the event that is passed in
 	onFilter = (event) => {
-		const rockets = this.props.rockets;
 		if (event === "All") {
-			this.props.onChanged(rockets.filter(
-				(e) => e.display = true));
+			this.props.registerFilter(this.props.title,
+				(e) => e.display = true);
 		} else if (parseInt(event)) {
-			this.props.onChanged(rockets.filter(
-				(e) => e.display = e.capacity < parseInt(event)));
+			this.props.registerFilter(this.props.title,
+				(e) => e.display = e.capacity < parseInt(event));
 		} else {
-			this.props.onChanged(rockets.filter(
-				(e) => e.display = e.org === event));
+			this.props.registerFilter(this.props.title,
+				(e) => e.display = e.org === event);
 		}
 	}
 
 	onSearch = (event) => {
 		let input = event.target.value.trim().toLowerCase();
-		this.props.onChanged(this.props.rockets.filter(
-			(e) => e.name.toLowerCase().search(input) !== -1));
+		this.props.registerFilter(this.props.title, 
+			(e) => e.name.toLowerCase().search(input) !== -1);
 	}
 
 	createDropdownItems = () => {

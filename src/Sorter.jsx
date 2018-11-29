@@ -5,13 +5,12 @@ class Sorter extends Component {
 
 	onSort = (event) => {
 		if (event === "Alphabetical") {
-			this.props.items.sort((a, b) => a.name.localeCompare(b.name));
+			this.props.registerSorter((a, b) => a.name.localeCompare(b.name));
 		} else if (event === "Reverse alphabetical") {
-			this.props.items.sort((a, b) => b.name.localeCompare(a.name));
+			this.props.registerSorter((a, b) => b.name.localeCompare(a.name));
 		} else if (event === "Payload capacity") {
-			this.props.items.sort((a, b) => a.capacity - b.capacity);
+			this.props.registerSorter((a, b) => a.capacity - b.capacity);
 		}
-		this.props.onChanged(this.props.items);
 	}
 
 	render(){
