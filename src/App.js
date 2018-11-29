@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import SortedList from './SortedList';
+import Sorter from './Sorter';
 import Filter from './Filter';
+import Grid from './Grid';
 
 const rockets = [
 	{name: "Antares", org: "Orbital ATK", capacity: 5000, img: ""},
@@ -32,7 +33,7 @@ class App extends Component {
 		};
 	}
 
-	onFiltered = (list) => {
+	onChanged = (list) => {
 		this.setState({filtered_rockets: list});
 	}
 
@@ -43,16 +44,20 @@ class App extends Component {
 			{eventKey: "SpaceX", display: "SpaceX"},
 		];
 		const capacity_menu = [
-			{eventyKey: "500", display: "< 500 kg"},
+			{eventKey: "500", display: "< 500 kg"},
 			{eventKey: "10000", display: "< 10000 kg"},
 			{eventKey: "50000", display: "< 50000 kg"}
 		];
 		return (
 			<div className="App">
 				<h1>American Rockets</h1>
-				<Filter rockets={rockets} onFiltered={this.onFiltered} items={org_menu} title={"Filter by organization"}/>
-				<Filter rockets={rockets} onFiltered={this.onFiltered} items={capacity_menu} title={"Filter by payload capacity"}/>
-				<SortedList items={this.state.filtered_rockets} />
+				<div className="row">
+					<Filter rockets={rockets} onChanged={this.onChanged} items={org_menu} title={"Filter by organization"}/>
+					<Filter rockets={rockets} onChanged={this.onChanged} items={capacity_menu} title={"Filter by payload capacity"}/>
+					<Filter rockets={rockets} onChanged={this.onChanged} />
+					<Sorter items={this.state.filtered_rockets} onChanged={this.onChanged} />
+				</div>
+				<Grid items={this.state.filtered_rockets} />
 			</div>
 		);
 	}

@@ -1,27 +1,7 @@
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
-import Grid from './Grid';
 
-class FilteredList extends Component {
-	constructor(props) {
-		super(props);
-
-		// The state is just a list of key/value pairs (like a hashmap)
-		this.state = {
-			search: "",
-			type: "All"
-		};
-	}
-
-	// Sets the state whenever the user types on the search bar
-	onSearch = (event) => {
-		this.setState({search: event.target.value.trim().toLowerCase()});
-	}
-
-	// Changes filterItem to take into account the "type" state variable when filtering
-	filterItem = (item) => {
-		return item.name.toLowerCase().search(this.state.search) !== -1;
-	}
+class Sorter extends Component {
 
 	onSort = (event) => {
 		if (event === "Alphabetical") {
@@ -31,24 +11,20 @@ class FilteredList extends Component {
 		} else if (event === "Payload capacity") {
 			this.props.items.sort((a, b) => a.capacity - b.capacity);
 		}
-		this.forceUpdate();
+		this.props.onChanged(this.props.items);
 	}
 
 	render(){
 		return (
-			<div className = "filter-list">
-				<input type = "text" placeholder = "Search" onChange = {this.onSearch} />
-
+			<div className="filter-list">
 				<DropdownButton id="typeDropdown" title={"Sort"}>
 					<MenuItem eventKey="Alphabetical" onSelect={this.onSort}>Alphabetical</MenuItem>
 					<MenuItem eventKey="Reverse alphabetical" onSelect={this.onSort}>Reverse alphabetical</MenuItem>
 					<MenuItem eventKey="Payload capacity" onSelect={this.onSort}>Payload capacity</MenuItem>
 				</DropdownButton>
-
-				<Grid items={this.props.items.filter(this.filterItem)} />
 			</div>
 		);
 	}
 }
 
-export default FilteredList;
+export default Sorter;

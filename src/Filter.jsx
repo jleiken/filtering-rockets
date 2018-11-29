@@ -8,15 +8,21 @@ class Filter extends Component {
 	onFilter = (event) => {
 		const rockets = this.props.rockets;
 		if (event === "All") {
-			this.props.onFiltered(rockets.filter(
+			this.props.onChanged(rockets.filter(
 				(e) => e.display = true));
 		} else if (parseInt(event)) {
-			this.props.onFiltered(rockets.filter(
-				(e) => e.display = e.capacity > parseInt(event)));
+			this.props.onChanged(rockets.filter(
+				(e) => e.display = e.capacity < parseInt(event)));
 		} else {
-			this.props.onFiltered(rockets.filter(
+			this.props.onChanged(rockets.filter(
 				(e) => e.display = e.org === event));
 		}
+	}
+
+	onSearch = (event) => {
+		let input = event.target.value.trim().toLowerCase();
+		this.props.onChanged(this.props.rockets.filter(
+			(e) => e.name.toLowerCase().search(input) !== -1));
 	}
 
 	createDropdownItems = () => {
@@ -31,13 +37,19 @@ class Filter extends Component {
 	}
 
 	render(){
-		return (
-			<div className = "filter-list">	
-				<DropdownButton id="typeDropdown" title={this.props.title}>
-					{this.createDropdownItems()}
-				</DropdownButton>
-			</div>
-		);
+		if (this.props.items) {
+			return (
+				<div className = "filter-list">	
+					<DropdownButton id="typeDropdown" title={this.props.title}>
+						{this.createDropdownItems()}
+					</DropdownButton>
+				</div>
+			);
+		} else {
+			return (
+				<input type="text" placeholder="Search" onChange={this.onSearch} />
+			);
+		}
 	}
 }
 
