@@ -5,23 +5,23 @@ import Filter from './Filter';
 import Grid from './Grid';
 
 const rockets = [
-	{name: "Antares", org: "Orbital ATK", capacity: 5000, img: ""},
-	{name: "Atlas V", org: "ULA", capacity: 20520, img: ""},
-	{name: "Electron", org: "Rocket Lab", capacity: 250, img: ""},
-	{name: "Falcon 9", org: "SpaceX", capacity: 22800, img: ""},
-	{name: "Falcon Heavy", org: "SpaceX", capacity: 63800, img: ""},
-	{name: "BFR", org: "SpaceX", capacity: 100000, img: ""},
-	{name: "Pegasus", org: "Orbital ATK", capacity: 443, img: ""},
-	{name: "Redstone", org: "US Army", capacity: 2860, img: ""},
-	{name: "Saturn I", org: "NASA", capacity: 9070, img: ""},
-	{name: "Saturn V", org: "NASA", capacity: 140000, img: ""},
-	{name: "Space Shuttle", org: "NASA", capacity: 27500, img: ""},
-	{name: "Space Launch System", org: "ULA", capacity: 117934, img: ""},
-	{name: "Delta IV", org: "ULA", capacity: 11470, img: ""},
-	{name: "Delta IV Heavy", org: "ULA", capacity: 28790, img: ""},
-	{name: "Vulcan", org: "ULA", capacity: 34900, img: ""},
-	{name: "Taurus", org: "Northrop Grumman", capacity: 1320, img: ""},
-	{name: "New Glenn", org: "Blue Origin", capacity: 45000, img: ""}
+	{name: "Antares", org: "Orbital ATK", capacity: 5000, img: "images/antares.jpg"},
+	{name: "Atlas V", org: "ULA", capacity: 20520, img: "images/atlasv.jpg"},
+	{name: "Electron", org: "Rocket Lab", capacity: 250, img: "images/electron.jpg"},
+	{name: "Falcon 9", org: "SpaceX", capacity: 22800, img: "images/falcon9.jpg"},
+	{name: "Falcon Heavy", org: "SpaceX", capacity: 63800, img: "images/falconheavy.jpg"},
+	{name: "BFR", org: "SpaceX", capacity: 100000, img: "images/bfr.jpg"},
+	{name: "Pegasus", org: "Orbital ATK", capacity: 443, img: "images/pegasus.jpg"},
+	{name: "Redstone", org: "US Army", capacity: 2860, img: "images/redstone.jpg"},
+	{name: "Saturn I", org: "NASA", capacity: 9070, img: "images/saturni.jpg"},
+	{name: "Saturn V", org: "NASA", capacity: 140000, img: "images/saturnv.jpg"},
+	{name: "Space Shuttle", org: "NASA", capacity: 27500, img: "images/spaceshuttle.png"},
+	{name: "Space Launch System", org: "ULA", capacity: 117934, img: "images/sls.jpg"},
+	{name: "Delta IV", org: "ULA", capacity: 11470, img: "images/deltaiv.jpg"},
+	{name: "Delta IV Heavy", org: "ULA", capacity: 28790, img: "images/deltaivheavy.jpg"},
+	{name: "Vulcan", org: "ULA", capacity: 34900, img: "images/vulcan.jpg"},
+	{name: "Taurus", org: "Northrop Grumman", capacity: 1320, img: "images/taurus.jpg"},
+	{name: "New Glenn", org: "Blue Origin", capacity: 45000, img: "images/newglenn.jpg"}
 ];
 
 let filters = {};
@@ -76,6 +76,7 @@ class App extends Component {
 					<Sorter registerSorter={this.registerSorter} />
 					<Filter registerFilter={this.registerFilter} title={"Search"} />
 				</div>
+				<br></br>
 				<Grid items={this.state.filtered_rockets} />
 			</div>
 		);

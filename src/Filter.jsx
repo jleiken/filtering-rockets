@@ -1,6 +1,6 @@
 // TODO: make a component that generates the dropdown button and the filtering at the same time
 import React, { Component } from 'react';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { DropdownButton, MenuItem, FormControl } from 'react-bootstrap';
 
 class Filter extends Component {
 
@@ -8,20 +8,20 @@ class Filter extends Component {
 	onFilter = (event) => {
 		if (event === "All") {
 			this.props.registerFilter(this.props.title,
-				(e) => e.display = true);
+				e => e.display = true);
 		} else if (parseInt(event)) {
 			this.props.registerFilter(this.props.title,
-				(e) => e.display = e.capacity < parseInt(event));
+				e => e.display = e.capacity < parseInt(event));
 		} else {
 			this.props.registerFilter(this.props.title,
-				(e) => e.display = e.org === event);
+				e => e.display = e.org === event);
 		}
 	}
 
 	onSearch = (event) => {
 		let input = event.target.value.trim().toLowerCase();
 		this.props.registerFilter(this.props.title, 
-			(e) => e.name.toLowerCase().search(input) !== -1);
+			e => e.name.toLowerCase().search(input) !== -1);
 	}
 
 	createDropdownItems = () => {
@@ -37,8 +37,9 @@ class Filter extends Component {
 
 	render(){
 		if (this.props.items) {
+			// TODO: Make the dropdowns not hideous
 			return (
-				<div className = "filter-list">	
+				<div className = "filter-list">
 					<DropdownButton id="typeDropdown" title={this.props.title}>
 						{this.createDropdownItems()}
 					</DropdownButton>
@@ -46,7 +47,7 @@ class Filter extends Component {
 			);
 		} else {
 			return (
-				<input type="text" placeholder="Search" onChange={this.onSearch} />
+				<FormControl type="text" className="text-input" placeholder="Search" onChange={this.onSearch} />
 			);
 		}
 	}

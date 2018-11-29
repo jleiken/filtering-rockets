@@ -17,3 +17,37 @@ code {
 	display: flex;
 	justify-content: space-between;
 }
+
+h1 {
+	background-color: #5D84C8;
+
+	border-bottom: 1px solid gray;
+	box-shadow: -1px 0px 8px gray;
+
+	margin-top: 0;
+	padding-top: 0.5em;
+	margin-bottom: 0.5em;
+	padding-bottom: 0.5em;
+
+	color: white;
+}
+
+.text-input {
+	width: 20em;
+}
+
+.thumbnail {
+	width: fit-content;
+}
+
+.thumbnail>img {
+	max-width: 20em;
+	max-height: 15em;
+}
+
+.grid-wrapper {
+	display: grid;
+  grid-template-columns: repeat(3, 1fr);
+	grid-gap: 10px;
+	justify-items: center;
+}
