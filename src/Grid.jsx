@@ -13,15 +13,15 @@ class Grid extends Component {
 			);
 		});
 
-		return items;
+		if (items.length === 0) {
+			return <h3>No items matched the given criteria!</h3>;
+		} else {
+			return <div className="grid-wrapper">{items}</div>;
+		}
 	}
 
 	render() {
-		return (
-			<div className="grid-wrapper">
-				{this.renderGrid()}
-			</div>
-		);
+		return this.renderGrid();
 	}
 }
 

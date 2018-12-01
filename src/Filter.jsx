@@ -1,8 +1,14 @@
-// TODO: make a component that generates the dropdown button and the filtering at the same time
 import React, { Component } from 'react';
 import { DropdownButton, MenuItem, FormControl } from 'react-bootstrap';
 
 class Filter extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			title: this.props.title
+		};
+	}
 
 	// Sets display to false depending on the event that is passed in
 	onFilter = (event) => {
@@ -16,6 +22,7 @@ class Filter extends Component {
 			this.props.registerFilter(this.props.title,
 				e => e.display = e.org === event);
 		}
+		this.setState({title: event});
 	}
 
 	onSearch = (event) => {
@@ -37,10 +44,9 @@ class Filter extends Component {
 
 	render(){
 		if (this.props.items) {
-			// TODO: Make the dropdowns not hideous
 			return (
 				<div className = "filter-list">
-					<DropdownButton id="typeDropdown" title={this.props.title}>
+					<DropdownButton id="typeDropdown" title={this.state.title}>
 						{this.createDropdownItems()}
 					</DropdownButton>
 				</div>
