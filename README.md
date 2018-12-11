@@ -14,7 +14,7 @@
 
 To open this website, [React and npm](https://codeburst.io/installing-reactjs-and-creating-your-first-application-d437706498ed) must be installed.
 Once you have those, navigate to the folder containing this file and run
-`npm start`. React will automatically open it in your default web browser!
+`npm i` then `npm start`. React will automatically open it in your default web browser!
 
 This website, written for CSCI 1300: UI/UX, demonstrates a number of the
 principles learned in that class. First, it's clear that the only
